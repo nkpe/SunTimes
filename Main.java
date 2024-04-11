@@ -1,9 +1,8 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.net.*;
-
-import javax.swing.plaf.synth.SynthTextAreaUI;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,13 +56,16 @@ public class Main {
             }
 
             BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()));
+                new InputStreamReader(connection.getInputStream())
+            );
+
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null){
                 content.append(inputLine);
                 System.out.println("Input Line " + inputLine);
             }
+            
             in.close();
             FullResponseBuilder.getFullResponse(connection);
         } catch (Exception e) {
@@ -71,4 +73,8 @@ public class Main {
             System.out.println(e);
         }
     }
+
+    // public ArrayList<String> getValueForKey(String jsonArrayStr, String key) {
+    //     JsonReader = Json
+    // }
 }
