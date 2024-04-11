@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# OSX
+*.DS_STORE
+
 # Log file
 *.log
 
@@ -22,3 +25,22 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# VS Code
+.vscode
+
+# Checkov Tests
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+logs
