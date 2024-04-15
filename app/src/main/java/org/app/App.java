@@ -19,8 +19,6 @@ public class App {
         }
 
         apiRequest(apiURL);
-
-        // 51.515972, -0.174943 
     }
 
     private static void info() {
