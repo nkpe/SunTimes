@@ -10,7 +10,7 @@ import java.net.*;
 
 public class App {
     public static void main(String[] args) {
-        init();
+        info();
         Location userLocation = UserInput.userInput();
         URL apiURL = parseURl(userLocation);
 
@@ -23,7 +23,7 @@ public class App {
         // 51.515972, -0.174943 
     }
 
-    private static void init() {
+    private static void info() {
         System.out.println("Provide longitude and latitude for location of Sunset");
     }
 
