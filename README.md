@@ -9,3 +9,4 @@ Java
 
 ## Resources
 [http Request tutorials](https://www.baeldung.com/java-http-request)
+[JSON Tutorial](https://www.geeksforgeeks.org/parse-json-java/)

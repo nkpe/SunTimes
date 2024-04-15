@@ -1,3 +1,5 @@
+package org.app;
+
 import java.util.Scanner;
 
 public class UserInput {
