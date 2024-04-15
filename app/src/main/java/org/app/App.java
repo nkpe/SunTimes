@@ -22,6 +22,8 @@ public class App {
     }
 
     private static void info() {
+        System.out.println("");
+        System.out.println("APP STARTED");
         System.out.println("Provide longitude and latitude for location of Sunset");
     }
 
