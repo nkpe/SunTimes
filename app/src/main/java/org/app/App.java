@@ -8,18 +8,16 @@ import java.net.*;
 public class App {
     public static void main(String[] args) {
         info();
-        Location userLocation = UserInput.userInput(System.in);
-        URL apiURL = Request.parseURl(userLocation);
 
+        Location userLocation = UserInput.userInput(System.in);
+
+        URL apiURL = Request.parseURl(userLocation);
         if (apiURL == null){
             System.out.println("API Url is null");
             return;
         }
 
         String response = Request.apiRequest(apiURL);
-
-        System.out.println("RESPONSE: " + response);
-
         if (response == null){
             System.out.println("API Response is null");
             return;
@@ -36,8 +34,10 @@ public class App {
 
     private static void dataOutput(String inputLine){
         APIData apiData = new APIData(JSONParse.getJSON(inputLine));
-        System.out.println("Your sunrise will be at: " + apiData.getSunrise());
-        System.out.println("Your sunset will be at: " + apiData.getSunset());
+        System.out.println(" ");
+        System.out.println("For the date " + apiData.getDate() + ".");
+        System.out.println("Your sunrise will be at: " + apiData.getSunrise() + ".");
+        System.out.println("Your sunset will be at: " + apiData.getSunset() + ".");
 
     }
 }
