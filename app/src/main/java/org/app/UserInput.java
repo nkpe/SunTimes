@@ -1,5 +1,6 @@
 package org.app;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class UserInput {
@@ -18,8 +19,8 @@ public class UserInput {
         return longitude;
     }
 
-    public static Location userInput(){
-        Scanner scanner = new Scanner(System.in);
+    public static Location userInput(InputStream input){
+        Scanner scanner = new Scanner(input);
         double latitude = userLatitudeInput(scanner);
         double longitude = userLongitudeInput(scanner);
 

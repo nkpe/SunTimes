@@ -8,6 +8,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.lang.reflect.*;
+
+import javax.swing.plaf.synth.SynthTextAreaUI;
 
 
 public class JSONParse {
@@ -26,8 +29,25 @@ public class JSONParse {
         };
 
         try {
-            Map<String, Object> map = (Map <String, Object>) parser.parse(jsonString, containerFactory);
-            map.forEach((k,v)->System.out.println("Key: " + k + "Value: + " + v));
+            Object returned = parser.parse(jsonString, containerFactory); 
+            Map<String, Object> mapReturned = mapReturned.getClass()
+            System.out.println("Map returned in OG state: " + mapReturned);
+
+            // String results = mapReturned.get("results").toString();
+            // System.out.println("RESULTS= " + results);
+
+            // Map<String, Object> resultsMap = (Map<String, Object>) parser.parse(results, containerFactory);
+
+            // System.out.println("RESULTSMAP= " + resultsMap);
+
+            // Object date = resultsMap.get("date");
+            // Object sunrise = resultsMap.get("sunrise");
+            // Object sunset = resultsMap.get("sunset");
+            
+            // System.out.println("");
+            // System.out.println("Here are the sunrise and sunset times for " + date + ".");
+            // System.out.println("Sunrise in your location is at: " + sunrise);
+            // System.out.println("Sunset in your location is at: " + sunset);
         } catch (ParseException pe) {
             System.out.println(pe);
         } catch (Exception e){

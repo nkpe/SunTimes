@@ -11,7 +11,7 @@ import java.net.*;
 public class App {
     public static void main(String[] args) {
         info();
-        Location userLocation = UserInput.userInput();
+        Location userLocation = UserInput.userInput(System.in);
         URL apiURL = parseURl(userLocation);
 
         if (apiURL == null){
