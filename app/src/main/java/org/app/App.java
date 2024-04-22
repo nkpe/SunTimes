@@ -3,84 +3,42 @@
  */
 package org.app;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.*;
 
 public class App {
     public static void main(String[] args) {
         info();
         Location userLocation = UserInput.userInput(System.in);
-        URL apiURL = parseURl(userLocation);
+        URL apiURL = Request.parseURl(userLocation);
 
         if (apiURL == null){
+            System.out.println("API Url is null");
             return;
         }
 
-        apiRequest(apiURL);
+        String response = Request.apiRequest(apiURL);
+
+        System.out.println("RESPONSE: " + response);
+
+        if (response == null){
+            System.out.println("API Response is null");
+            return;
+        }
+
+        dataOutput(response);
     }
 
     private static void info() {
         System.out.println("");
         System.out.println("APP STARTED");
         System.out.println("Provide longitude and latitude for location of Sunset");
+    } 
+
+    private static void dataOutput(String inputLine){
+        APIData apiData = new APIData(JSONParse.getJSON(inputLine));
+        System.out.println("Your sunrise will be at: " + apiData.getSunrise());
+        System.out.println("Your sunset will be at: " + apiData.getSunset());
+
     }
-
-    private static URL parseURl(Location location) {
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
-        String queryData = new String("lat=" + String.valueOf(latitude) + "&lng=" + String.valueOf(longitude));
-        URL urlAPI = null;
-
-        try {
-            urlAPI = new URI("https://api.sunrisesunset.io/json?" + queryData).toURL();
-        } catch (URISyntaxException e) {
-            System.out.println("URI Syntax Exception");
-            System.out.println(e);
-        } catch (Exception e) {
-            System.out.println("Error occurred parsing URI");
-        }
-
-        return urlAPI;
-        
-    }
-
-    private static void apiRequest(URL apiUrl){
-        try {
-            HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
-            connection.setRequestMethod("GET");
-            int status = connection.getResponseCode();
-            Reader streamReader = null;
-
-            if (status > 299) {
-                streamReader = new InputStreamReader(connection.getErrorStream());
-            } else {
-                streamReader = new InputStreamReader(connection.getInputStream());
-            }
-
-            BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream())
-            );
-
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null){
-                content.append(inputLine);
-                JSONParse.getJSON(inputLine);
-                System.out.println("Input Line " + inputLine);
-            }
-            
-            in.close();
-            FullResponseBuilder.getFullResponse(connection);
-        } catch (Exception e) {
-            System.out.println("An error occurred");
-            System.out.println(e);
-        }
-    }
-
-    // public ArrayList<String> getValueForKey(String jsonArrayStr, String key) {
-    //     JsonReader = Json
-    // }
 }
 

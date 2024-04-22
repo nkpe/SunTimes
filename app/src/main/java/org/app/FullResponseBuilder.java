@@ -10,8 +10,6 @@ public class FullResponseBuilder {
         .append("")
         .append(connection.getResponseMessage())
         .append("\n");
-
-        System.out.println("Full Response Builder " + fullResponseBuilder.toString());
         return fullResponseBuilder.toString();
     }
 }
